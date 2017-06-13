@@ -1,0 +1,65 @@
+<?php
+
+namespace DummyNamespace;
+
+class DummyClass
+{
+    /**
+     * Return all records.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function all()
+    {
+        //
+    }
+
+    /**
+     * Create new record.
+     *
+     * @param  array $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function create(array $data)
+    {
+        //
+    }
+
+    /**
+     * Delete specified record.
+     *
+     * @param  int|string $id
+     *
+     * @return void
+     */
+    public function delete($id)
+    {
+        //
+    }
+
+    /**
+     * Find the specified record.
+     *
+     * @param  int|string $id
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function find($id)
+    {
+        //
+    }
+
+    /**
+     * Update specified record.
+     *
+     * @param  int|string $id
+     * @param  array      $data
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function update($id, array $data = [])
+    {
+        //
+    }
+}
