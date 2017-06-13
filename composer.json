@@ -1,0 +1,31 @@
+{
+    "name": "gearhub/laravel-enhancement-suite",
+    "description": "Additions that are used in most of our Laravel projects.",
+    "keywords": ["gear", "gearhub", "laravel"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Vince Ruby",
+            "email": "vsruby91@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "^5.4"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "GearHub\\LaravelEnhancementSuite\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GearHub\\LaravelEnhancementSuite\\Tests\\": "tests/"
+        }
+    }
+}
