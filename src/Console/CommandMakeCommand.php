@@ -55,7 +55,7 @@ class CommandMakeCommand extends GeneratorCommand
 
         $this->call('make:les-handler', [
             'name'    => "{$handler}Handler",
-            '--event' => $this->argument('name')
+            '--command' => $this->argument('name')
         ]);
     }
 
