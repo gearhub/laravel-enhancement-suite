@@ -21,7 +21,7 @@ GearHub\LaravelEnhancementSuite\LaravelEnhancementSuiteServiceProvider::class
 
 Next, you need to add the facade to your ```aliases``` array in your ```app.php```:
 ```php
-'Repository' => \GearHub\LaravelEnhancementSuiteApp\Facades\Repository::class
+'Repository' => \GearHub\LaravelEnhancementSuite\Facades\Repository::class
 ```
 
 Run this in the command line:

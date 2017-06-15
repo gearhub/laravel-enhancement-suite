@@ -69,7 +69,7 @@ class ServiceProviderTest extends TestCase
     protected function getPackageAliases($app)
     {
         return [
-            'Repository' => \GearHub\LaravelEnhancementSuiteApp\Facades\Repository::class
+            'Repository' => \GearHub\LaravelEnhancementSuite\Facades\Repository::class
         ];
     }
 
