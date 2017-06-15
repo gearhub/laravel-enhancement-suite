@@ -5,7 +5,9 @@ namespace GearHub\LaravelEnhancementSuite;
 use GearHub\LaravelEnhancementSuite\Console\RepositoryMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\TransformerMakeCommand;
 use GearHub\LaravelEnhancementSuite\Contracts\Serializers\DataSerializer;
+use GearHub\LaravelEnhancementSuite\Http\Responses\ResponseBuilder;
 use Illuminate\Support\ServiceProvider;
+use League\Fractal\Manager;
 
 class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
 {
@@ -45,7 +47,10 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array_merge($this->commands, [DataSerializer::class]);
+        return array_merge($this->commands, [
+            DataSerializer::class,
+            ResponseBuilder::class
+        ]);
     }
 
     /**
@@ -59,6 +64,7 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
 
         $this->registerCommands();
         $this->registerDataSerializer();
+        $this->registerResponseBuilder();
     }
 
     /**
@@ -85,6 +91,18 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
     {
         $this->app->singleton(DataSerializer::class, function ($app) {
             return $app->make($this->config('serializer'));
+        });
+    }
+
+    /**
+     * Register the response builder.
+     *
+     * @return void
+     */
+    protected function registerResponseBuilder()
+    {
+        $this->app->singleton(ResponseBuilder::class, function ($app) {
+            return new ResponseBuilder($app->make(Manager::class), $app[DataSerializer::class]);
         });
     }
 

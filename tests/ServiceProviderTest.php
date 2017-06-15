@@ -5,6 +5,7 @@ namespace GearHub\LaravelEnhancementSuite\Tests;
 use GearHub\LaravelEnhancementSuite\Console\RepositoryMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\TransformerMakeCommand;
 use GearHub\LaravelEnhancementSuite\Contracts\Serializers\DataSerializer;
+use GearHub\LaravelEnhancementSuite\Http\Responses\ResponseBuilder;
 use GearHub\LaravelEnhancementSuite\LaravelEnhancementSuiteServiceProvider;
 use GearHub\LaravelEnhancementSuite\Serializers\EmberDataRestSerializer;
 use Orchestra\Testbench\TestCase;
@@ -15,6 +16,12 @@ class ServiceProviderTest extends TestCase
     public function it_registers_the_reposity_make_console_command()
     {
         $this->assertInstanceOf(RepositoryMakeCommand::class, $this->app['command.les.repository.make']);
+    }
+
+    /** @test */
+    public function it_registers_the_response_builder_class()
+    {
+        $this->assertInstanceOf(ResponseBuilder::class, $this->app[ResponseBuilder::class]);
     }
 
     /** @test */
