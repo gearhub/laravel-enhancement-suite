@@ -2,6 +2,8 @@
 
 namespace GearHub\LaravelEnhancementSuite;
 
+use GearHub\LaravelEnhancementSuite\Console\CommandMakeCommand;
+use GearHub\LaravelEnhancementSuite\Console\HandlerMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\RepositoryMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\TransformerMakeCommand;
 use GearHub\LaravelEnhancementSuite\Contracts\Repositories\RepositoryFactory as RepositoryFactoryContract;
@@ -19,6 +21,8 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
+        'command.les.command.make',
+        'command.les.handler.make',
         'command.les.repository.make',
         'command.les.transformer.make',
     ];
@@ -82,6 +86,8 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
     {
         $this->registerRepositoryMakeCommand();
         $this->registerTransformerMakeCommand();
+        $this->registerCommandMakeCommand();
+        $this->registerHandlerMakeCommand();
 
         $this->commands($this->commands);
     }
@@ -121,6 +127,30 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ResponseBuilder::class, function ($app) {
             return new ResponseBuilder($app->make(Manager::class), $app[DataSerializer::class]);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerCommandMakeCommand()
+    {
+        $this->app->singleton('command.les.command.make', function ($app) {
+            return new CommandMakeCommand($app['files']);
+        });
+    }
+
+    /**
+     * Register the command.
+     *
+     * @return void
+     */
+    protected function registerHandlerMakeCommand()
+    {
+        $this->app->singleton('command.les.handler.make', function ($app) {
+            return new HandlerMakeCommand($app['files']);
         });
     }
 

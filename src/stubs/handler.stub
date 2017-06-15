@@ -1,0 +1,20 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyFullCommand;
+
+class DummyClass
+{
+    /**
+     * Handle the command.
+     *
+     * @param  DummyCommand $command
+     *
+     * @return mixed
+     */
+    public function handle(DummyCommand $command)
+    {
+        //
+    }
+}

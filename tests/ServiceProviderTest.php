@@ -2,6 +2,8 @@
 
 namespace GearHub\LaravelEnhancementSuite\Tests;
 
+use GearHub\LaravelEnhancementSuite\Console\CommandMakeCommand;
+use GearHub\LaravelEnhancementSuite\Console\HandlerMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\RepositoryMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\TransformerMakeCommand;
 use GearHub\LaravelEnhancementSuite\Contracts\Repositories\RepositoryFactory as RepositoryFactoryContract;
@@ -14,6 +16,18 @@ use Orchestra\Testbench\TestCase;
 
 class ServiceProviderTest extends TestCase
 {
+    /** @test */
+    public function it_registers_the_command_make_console_command()
+    {
+        $this->assertInstanceOf(CommandMakeCommand::class, $this->app['command.les.command.make']);
+    }
+
+    /** @test */
+    public function it_registers_the_handler_make_console_command()
+    {
+        $this->assertInstanceOf(HandlerMakeCommand::class, $this->app['command.les.handler.make']);
+    }
+
     /** @test */
     public function it_registers_the_reposity_make_console_command()
     {
