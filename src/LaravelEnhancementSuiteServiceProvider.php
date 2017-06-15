@@ -4,6 +4,7 @@ namespace GearHub\LaravelEnhancementSuite;
 
 use GearHub\LaravelEnhancementSuite\Console\RepositoryMakeCommand;
 use GearHub\LaravelEnhancementSuite\Console\TransformerMakeCommand;
+use GearHub\LaravelEnhancementSuite\Contracts\Serializers\DataSerializer;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
@@ -44,7 +45,7 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return $this->commands;
+        return array_merge($this->commands, [DataSerializer::class]);
     }
 
     /**
@@ -57,6 +58,7 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'les');
 
         $this->registerCommands();
+        $this->registerDataSerializer();
     }
 
     /**
@@ -72,6 +74,18 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
         $this->registerTransformerMakeCommand();
 
         $this->commands($this->commands);
+    }
+
+    /**
+     * Register the data serializer.
+     *
+     * @return void
+     */
+    protected function registerDataSerializer()
+    {
+        $this->app->singleton(DataSerializer::class, function ($app) {
+            return $app->make($this->config('serializer'));
+        });
     }
 
     /**
@@ -96,5 +110,18 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
         $this->app->singleton('command.les.transformer.make', function ($app) {
             return new TransformerMakeCommand($app['files']);
         });
+    }
+
+    /**
+     * Helper to get config values.
+     *
+     * @param  string      $key
+     * @param  string|null $default
+     *
+     * @return string
+     */
+    protected function config($key, $default = null)
+    {
+        return config("les.$key", $default);
     }
 }

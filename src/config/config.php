@@ -8,6 +8,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Serializer
+    |--------------------------------------------------------------------------
+    |
+    | Specify the serializer that will be used in the response builder.
+    |
+    */
+    'serializer' => \GearHub\LaravelEnhancementSuite\Serializers\EmberDataRestSerializer::class,
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Repository Namespace
     |--------------------------------------------------------------------------
     |
