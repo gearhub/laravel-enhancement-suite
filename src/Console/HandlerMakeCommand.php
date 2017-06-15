@@ -69,7 +69,7 @@ class HandlerMakeCommand extends GeneratorCommand
         );
 
         return str_replace(
-            'DummyFullCommand', $command, $stub
+            'DummyFullCommand', str_replace('/', '\\', $command), $stub
         );
     }
 
