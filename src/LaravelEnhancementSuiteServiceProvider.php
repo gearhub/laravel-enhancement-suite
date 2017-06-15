@@ -14,8 +14,8 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        'RepositoryMake'  => 'command.les.repository.make',
-        'TransformerMake' => 'command.les.transformer.make',
+        'command.les.repository.make',
+        'command.les.transformer.make',
     ];
 
     /**
@@ -44,7 +44,7 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array_values($this->commands);
+        return $this->commands;
     }
 
     /**
@@ -56,7 +56,7 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'les');
 
-        $this->registerCommands($this->commands);
+        $this->registerCommands();
     }
 
     /**
@@ -66,12 +66,12 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerCommands(array $commands)
+    protected function registerCommands()
     {
         $this->registerRepositoryMakeCommand();
         $this->registerTransformerMakeCommand();
 
-        $this->commands(array_values($commands));
+        $this->commands($this->commands);
     }
 
     /**
