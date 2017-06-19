@@ -59,6 +59,6 @@ class RepositoryFactory implements RepositoryFactoryContract
      */
     protected function build($key)
     {
-        return app()->getNamespace() . $this->laravel['config']['les.repository_namespace'] . '\\' . studly_case(str_singular($key)) . 'Repository';
+        return app()->getNamespace() . config('les.repository_namespace') . '\\' . studly_case(str_singular($key)) . 'Repository';
     }
 }
