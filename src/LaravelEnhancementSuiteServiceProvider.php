@@ -56,7 +56,8 @@ class LaravelEnhancementSuiteServiceProvider extends ServiceProvider
         return array_merge($this->commands, [
             DataSerializer::class,
             RepositoryFactoryContract::class,
-            ResponseBuilder::class
+            ResponseBuilder::class,
+            'repositories'
         ]);
     }
 
