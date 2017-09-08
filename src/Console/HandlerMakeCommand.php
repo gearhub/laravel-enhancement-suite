@@ -33,13 +33,13 @@ class HandlerMakeCommand extends GeneratorCommand
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         if (! $this->option('command')) {
             return $this->error('Missing required option: --command');
         }
 
-        parent::fire();
+        parent::handle();
     }
 
     /**
